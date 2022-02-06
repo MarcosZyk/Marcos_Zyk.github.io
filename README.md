@@ -1,15 +1,5 @@
-## Marcos_千钰
+## README
 
-个人分享主页
+Personal site for MarcosZyk
 
-### 技术
-
-1. Java
-2. 服务端开发
-3. 数据库
-4. 大数据
-
-
-
-### [设计模式](design_patterns/introduction.md)
-
+see [Marcos_千钰 | marcosZyk.github.io](https://marcoszyk.github.io/)
