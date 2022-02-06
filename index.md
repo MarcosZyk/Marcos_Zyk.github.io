@@ -1,23 +1,29 @@
 ---
 title: Marcos_千钰
 
-description:
+description: 个人主页
 ---
 
-## Marcos_千钰
+## 背景
 
-个人分享主页
+本科：南京大学软件学院
 
-### 技术
+硕士：清华大学软件学院
+
+## 技术
 
 1. Java
 2. 服务端开发
 3. 数据库
 4. 大数据
 
+## 项目经历
 
+[Apache IoTDB](https://iotdb.apache.org/)
 
-### [设计模式](design_patterns/introduction.md)
+## 博客
+
+[设计模式](design_patterns/introduction.md)
 
 
 

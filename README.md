@@ -2,4 +2,4 @@
 
 Personal site for MarcosZyk
 
-see [Marcos_千钰 | marcosZyk.github.io](https://marcoszyk.github.io/)
+see [Marcos_千钰 ](https://marcoszyk.github.io/)
