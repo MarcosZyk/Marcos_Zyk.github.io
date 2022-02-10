@@ -29,7 +29,7 @@ description: 如何在IoTDB中新增一个功能
 
 
 
-![](\picture\command_pattern.png)
+![](/picture/command_pattern.png)
 
 
 
