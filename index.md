@@ -27,6 +27,7 @@ description: 个人主页
 
 - [引言](design_patterns/introduction.md)
 - [命令模式](design_patterns/command_pattern.md)
+- [组合模式](design_patterns/composite_pattern.md)
 
 ![](https://github-readme-stats.vercel.app/api?username=marcoszyk)
 
