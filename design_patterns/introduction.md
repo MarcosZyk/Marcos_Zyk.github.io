@@ -56,3 +56,7 @@ II的课程上都有专门的课时讲授设计模式，但主要是大家耳熟
 
 在硕士开学正式进组后，我依旧是负责IoTDB元数据模块的开发与维护，跟这棵树斗智斗勇。慢慢地，更多的设计模式逐步被引入进来，模板方法模式、装饰器模式、迭代器模式、享元模式、代理模式...... 这些模式以及相关的代码和应用都将作为我这组设计模式系列博客的主要内容。
 
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
