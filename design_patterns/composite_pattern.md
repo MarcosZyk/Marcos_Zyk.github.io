@@ -65,8 +65,3 @@ Apache IoTDB采用树形数据模型，以方便用户遵循传统的树形资�
 | 存储组节点（StorageGroupMNode）           | 特殊的中间节点，对应每个存储组，其中定义每个存储组中数据的存活时间TTL |
 | 实体节点/设备节点 （EntityMNode）         | 特殊的中间节点，为叶子节点的父节点，对应实际应用场景中携带传感器的设备 |
 | 物理量节点/传感器节点（MeasurementMNode） | 元数据树中的叶子节点，对应实际应用场景中的传感器，定义了传感器采集的数据的schema信息 |
-
-
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>

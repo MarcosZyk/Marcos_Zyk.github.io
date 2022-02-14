@@ -120,8 +120,3 @@ Apache IoTDB采用树形数据模型，实现上对应元数据模块，即/serv
 在0.12及之前的MTree代码中，序列查询对应MTree.findPath方法，可以看到该方法是一个针对树的递归遍历操作，在递归过程中，递归函数的参数数量相当多，除了一开始的任务输入参数，还需要维护遍历过程中的一些状态信息以及结果集。这里的实现也采用全局变量的方式来简化函数接口，但是上文我们分析过，全局变量的方式难以支撑多线程。于是为了解决这个问题，该版本的代码利用了Java中的ThreadLocal功能，将全局变量定义为ThreadLocal的，这样就解决了线程之间的相互影响。
 
 从0.13开始，IoTDB的MTree部分的代码经历了大的调整，引入了Traverser框架。针对每一种元数据树的查询任务，代码中定义了具体的Traverser类（部分简单的类采用匿名方式嵌入MTree代码中）。Traverser类的成员变量涵盖了该任务的输入参数以及树遍历过程中的状态信息，同时Traverser定义了树的遍历过程，封装在tarverse()方法中。不难看出，Traverser类完整定义了一个元数据查询任务，包括任务描述（输入）与任务执行过程（遍历方法与状态信息）。同时，Traverser通过成员变量的方式，取缔了0.12以前版本中所使用的ThreadLocal功能，一个Traverser对象对应一个查询任务，其成员变量之间天然隔离，不存在相互影响的问题。
-
-
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
