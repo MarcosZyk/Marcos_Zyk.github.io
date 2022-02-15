@@ -1,4 +1,5 @@
 ---
+
 title: 命令模式及其在Apache IoTDB中的应用
 description: 如何完成对一个请求/任务的抽象
 ---
@@ -53,9 +54,7 @@ description: 如何完成对一个请求/任务的抽象
 - Receiver: 接收者
 - Client: 客户类
 
-
-
-![](/picture/command_pattern.png)
+![](/picture/command_pattern/command_pattern.png)
 
 
 
@@ -99,7 +98,13 @@ description: 如何完成对一个请求/任务的抽象
 
 在Apache IoTDB中，SQL的解析通过Antlr4来实现，经过Antlr4解析所得的参数与算子将形成IoTDB的逻辑计划，在实际的代码中对应/server/src/main/java/org/apache/iotdb/db/qp/logical包下的一系列Operator类，每一个Operator类对应了一个具体的逻辑任务，例如InsertOperator对应了写入任务、QueryOperator对应了查询任务。
 
+![operator](/picture/command_pattern/operator.png)
+
+
+
 IoTDB中的逻辑计划Operator，每种Operator都封装了具体的生成物理计划的方法generatePhysicalPlan，该方法将由PhysicalGenerator调用，来实现从逻辑计划到物理计划的转化。物理计划对应了/server/src/main/java/org/apache/iotdb/db/qp/physical包下的一系列plan类，例如InsertPlan为写入任务的物理计划、RawDataQueryPlan为原始查询任务的物理计划。
+
+![generate_physicalPlan](/picture/command_pattern/generate_physicalPlan.png)
 
 在IoTDB的物理计划生成过程中，一个典型的步骤就是针对SQL中输入的路径采取去\*操作。IoTDB采用树形数据模型，树的每一个叶子节点代表一条时间序列，IoTDB提供通配符功能来帮助用户同时选中多条序列。假设元数据树上有root.sg.d1.s和root.sg.d2.s两条序列，那么用户可以使用root.sg.*.s来同时选中两天序列。例如我们可以写出这样的SQL:
 
@@ -109,7 +114,15 @@ select s from root.sg.* where time  > 1
 
 那么以这条SQL为例，逻辑计划中记录的序列路径就是root.sg.*.s，那么在通过去星操作，生成的物理计划中记录的序列路径就是root.sg.d1.s和root.sg.d2.s。
 
+
+
+![remove_wildcard](/picture/command_pattern/remove_wildcard.png)
+
+
+
 此外，IoTDB设计了PlanExecutor来实现服务层与底层存储引擎的解耦，服务层只负责请求的接受与计划的生成与调用执行，只需将物理计划传入PlanExecutor即可，无需关心底层存储引擎的实现。
+
+![receive_plan](/picture/command_pattern/receive_plan.png)
 
 
 
@@ -117,6 +130,22 @@ select s from root.sg.* where time  > 1
 
 Apache IoTDB采用树形数据模型，实现上对应元数据模块，即/server/src/main/java/org/apache/iotdb/db/metadata包下的代码。IoTDB提供了丰富的针对元数据树操作的DDL，包括统计序列、查询匹配的序列等。以序列查询为例，该任务类似上文所说的去星操作，也是根据输入的逻辑路径来获取其对应的实际物理路径。同时该功能还支持limit、offset等操作。
 
-在0.12及之前的MTree代码中，序列查询对应MTree.findPath方法，可以看到该方法是一个针对树的递归遍历操作，在递归过程中，递归函数的参数数量相当多，除了一开始的任务输入参数，还需要维护遍历过程中的一些状态信息以及结果集。这里的实现也采用全局变量的方式来简化函数接口，但是上文我们分析过，全局变量的方式难以支撑多线程。于是为了解决这个问题，该版本的代码利用了Java中的ThreadLocal功能，将全局变量定义为ThreadLocal的，这样就解决了线程之间的相互影响。
+在0.12及之前的MTree代码中，序列查询对应MTree.findPath方法，可以看到该方法是一个针对树的递归遍历操作，在递归过程中，递归函数的参数数量相当多，除了一开始的任务输入参数，还需要维护遍历过程中的一些状态信息以及结果集。
 
-从0.13开始，IoTDB的MTree部分的代码经历了大的调整，引入了Traverser框架。针对每一种元数据树的查询任务，代码中定义了具体的Traverser类（部分简单的类采用匿名方式嵌入MTree代码中）。Traverser类的成员变量涵盖了该任务的输入参数以及树遍历过程中的状态信息，同时Traverser定义了树的遍历过程，封装在tarverse()方法中。不难看出，Traverser类完整定义了一个元数据查询任务，包括任务描述（输入）与任务执行过程（遍历方法与状态信息）。同时，Traverser通过成员变量的方式，取缔了0.12以前版本中所使用的ThreadLocal功能，一个Traverser对象对应一个查询任务，其成员变量之间天然隔离，不存在相互影响的问题。
+![find_path](/picture/command_pattern/find_path.png)
+
+这里的实现也采用全局变量的方式来简化函数接口，但是上文我们分析过，全局变量的方式难以支撑多线程。于是为了解决这个问题，该版本的代码利用了Java中的ThreadLocal功能，将全局变量定义为ThreadLocal的，这样就解决了线程之间的相互影响。
+
+![threadLocal](/picture/command_pattern/threadLocal.png)
+
+
+
+从0.13开始，IoTDB的MTree部分的代码经历了大的调整，引入了Traverser框架。针对每一种元数据树的查询任务，代码中定义了具体的Traverser类（部分简单的类采用匿名方式嵌入MTree代码中）。Traverser类的成员变量涵盖了该任务的输入参数以及树遍历过程中的状态信息，同时Traverser定义了树的遍历过程，封装在tarverse()方法中。不难看出，Traverser类完整定义了一个元数据查询任务，包括任务描述（输入）与任务执行过程（遍历方法与状态信息）。
+
+![Traverser](/picture/command_pattern/Traverser.png)
+
+
+
+同时，Traverser通过成员变量的方式，取缔了0.12以前版本中所使用的ThreadLocal功能，一个Traverser对象对应一个查询任务，其成员变量之间天然隔离，不存在相互影响的问题。
+
+![collector](/picture/command_pattern/collector.png)
