@@ -18,8 +18,8 @@ Before this, I focused on distributed timeseries DBMS and big data storage syste
 
 ## Education
 
-- <b>M.S.</b> School of Software, Tsinghua University (2021/09 - 2024/06)
-- <b>B.S.</b> Software Institute, Nanjing University (2017/09 - 2021/06)
+- <b>M.E.</b> School of Software, Tsinghua University (2021/09 - 2024/06)
+- <b>B.E.</b> Software Institute, Nanjing University (2017/09 - 2021/06)
 
 ## Work Experience
 
