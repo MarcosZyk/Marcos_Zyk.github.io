@@ -1,33 +1,33 @@
 ---
-title: Marcos_千钰
+title: Yukun Zhou (周钰坤)
 
-description: 个人主页
+description: PhD Student@CSE HKUST
 ---
 
-## 背景
+## About Me
 
-本科：南京大学软件学院
+I am a PhD student in the Department of Computer Science & Engineering (CSE) at the Hong Kong University of Science and Technology (HKUST), supervised by Prof. [Wei Wang](https://www.cse.ust.hk/~weiwa/) and Prof. [Binhang Yuan](https://binhangyuan.github.io/site/). 
 
-硕士：清华大学软件学院
+I achieved my master degree from School of Software, Tsinghua University, supervised by Prof. [Jianmin Wang](https://www.thss.tsinghua.edu.cn/faculty/wangjianmin.htm) and [Xiangdong Huang](https://www.thss.tsinghua.edu.cn/faculty/huangxiangdong.htm), and bachelor degree from Software Institute, Nanjing University, guided by Prof. [Jidong Ge](https://software.nju.edu.cn/gjd/).
 
-## 技术
+## Research Interests
 
-1. Java
-2. 服务端开发
-3. 数据库开发
-4. 大数据系统
+Currently, I am working on machine learning systems. 
 
-## 项目经历
+Before this, I focused on distributed timeseries DBMS and big data storage systems. I am a <b>Committer </b> of <b>[Apache IoTDB](https://iotdb.apache.org/) open source community</b>.
 
-[Apache IoTDB](https://iotdb.apache.org/)
+## Education
 
-## 博客
+- <b>M.S.</b> School of Software, Tsinghua University (2021/09 - 2024/06)
+- <b>B.S.</b> Software Institute, Nanjing University (2017/09 - 2021/06)
 
-### 设计模式
+## Work Experience
 
-- [引言](design_patterns/introduction.md)
-- [命令模式](design_patterns/command_pattern.md)
-- [组合模式](design_patterns/composite_pattern.md)
+- <b>SDE Intern</b>, Web system, Huawei (2020/09 - 2020/11)
+- <b>SDE Intern</b>, Web system, Tencent (2020/06 - 2020/08)
+
+
+### Links
 
 ![](https://github-readme-stats.vercel.app/api?username=marcoszyk)
 
