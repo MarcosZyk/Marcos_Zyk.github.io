@@ -14,7 +14,7 @@ I achieved my master degree from School of Software, Tsinghua University, superv
 
 Currently, I am working on machine learning systems. 
 
-Before this, I focused on distributed timeseries DBMS and big data storage systems. I am a <b>Committer </b> of <b>[Apache IoTDB](https://iotdb.apache.org/) open source community</b>.
+Before this, I focused on distributed timeseries DBMS and big data storage systems. I am a <b>Committer </b> of <b>[Apache IoTDB](https://iotdb.apache.org/) open source community</b>. From 2021.3-2024.6, I designed, developed and maintained the standalone storage engine and distributed workflows and procedures of timeseries metadata for Apache IoTDB.
 
 ## Education
 
